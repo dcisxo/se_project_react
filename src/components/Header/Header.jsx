@@ -1,0 +1,34 @@
+import React from 'react';
+import './Header.css';
+import logo from '../../assets/wtwr-logo.svg';
+import avatar from '../../assets/avatar.svg';
+
+function Header({ onAddClothesClick }) {
+  const currentDate = new Date().toLocaleString('default', { 
+    month: 'long', 
+    day: 'numeric' 
+  });
+
+  return (
+    <header className="header">
+        <img className="header__logo" src={logo} alt="WTWR Logo"/>
+        <p className="header__date-location">{currentDate}, New York</p>
+        <button 
+          className="header__add-clothes-btn"
+          onClick={onAddClothesClick}
+        >
+          + Add clothes
+        </button>
+        <div className="header__user-info">
+          <p className="header__username">Terrence Tegegne</p>
+          <img 
+            src={avatar} 
+            alt="User avatar" 
+            className="header__avatar"
+          />
+        </div>
+    </header>
+  );
+}
+
+export default Header;
