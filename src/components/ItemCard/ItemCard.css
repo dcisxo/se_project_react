@@ -1,3 +1,17 @@
-.item-card {
-   /* Your item card styles will go here */
+.card {
+   width: 323px;
+   position: relative;
+   display: flex;
+   justify-content: center;
+}
+
+.card__name {
+   position: absolute;
+   top: 15px;
+   margin: 0;
+}
+
+.card__image {
+   width: 100%;
+   
 }

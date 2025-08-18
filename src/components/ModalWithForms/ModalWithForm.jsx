@@ -1,10 +1,18 @@
-import React from 'react';
 import './ModalWithForm.css';
 
-function ModalWithForm() {
+function ModalWithForm({ children, buttonText, title }) {
   return (
-    <div className="modal-with-form">
-      <h1>Modal With Form Component</h1>
+    <div className="modal">
+      <div className="modal__content">
+        <h2 className="modal__title">{title}</h2>
+          <button type="button" className="modal__close">CLOSE
+            {/* TODO: ADD X ICON FROM FIGMA */}
+          </button>
+        <form className="modal__form">
+          {children}
+          <button type="submit" className="modal__submit">{buttonText}</button>
+        </form>
+      </div>
     </div>
   );
 }

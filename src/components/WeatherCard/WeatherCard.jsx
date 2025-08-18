@@ -1,11 +1,12 @@
-import React from 'react';
 import './WeatherCard.css';
+import sunny from '../../assets/sunny.png';
 
 function WeatherCard() {
   return (
-    <div className="weather-card">
-      <h2>Weather Card Component</h2        >
-    </div>
+    <section className="weather-card">
+      <p className="weather-card_temp">75&deg; F</p>
+      <img src={sunny} alt="sunny" className="weather-card_image" />
+    </section>
   );
 }
 
