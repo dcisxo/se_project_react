@@ -1,16 +1,27 @@
 import './ModalWithForm.css';
 
-function ModalWithForm({ children, buttonText, title }) {
+function ModalWithForm({ children, buttonText, title, activeModal, onClose }) {
   return (
-    <div className="modal">
+    <div
+      className={`modal ${activeModal === "add-garment" ? "modal_opened" : ""}`}
+    >
       <div className="modal__content">
         <h2 className="modal__title">{title}</h2>
-          <button type="button" className="modal__close">CLOSE
-            {/* TODO: ADD X ICON FROM FIGMA */}
-          </button>
+        <button
+          type="button"
+          className="modal__close"
+          onClick={onClose}
+        >
+          CLOSE {/* TODO: ADD X ICON FROM FIGMA */}
+        </button>
         <form className="modal__form">
           {children}
-          <button type="submit" className="modal__submit">{buttonText}</button>
+          <button
+            type="submit"
+            className="modal__submit"
+          >
+            {buttonText}
+          </button>
         </form>
       </div>
     </div>

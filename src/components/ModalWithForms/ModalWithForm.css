@@ -8,6 +8,11 @@
    display: flex;
    align-items: center;
    justify-content: center;
+   visibility: hidden;
+}
+
+.modal_opened {
+   visibility: visible;
 }
 
 .modal__title {
