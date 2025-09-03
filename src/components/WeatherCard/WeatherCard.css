@@ -6,6 +6,12 @@
    overflow: hidden;
 }
 
+.cards {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1;
+}
+
 .weather-card_temp {
   font-size: 36px;
   line-height: 40px;
@@ -13,6 +19,7 @@
   position: absolute;
   top: 20px;
   left: 16px;
+  color: #fff;
 }
 
 .weather-card_image {

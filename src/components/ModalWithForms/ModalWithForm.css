@@ -19,7 +19,7 @@
    margin: 0;
 }
 
-.modal__close {
+.modal__close-btn {
    position: absolute;
    top: 20px;
    right: 28px;
@@ -27,6 +27,8 @@
    border: none;
    font-size: 16px;
    cursor: pointer;
+   height: 20px;
+   width: 20px;
 }
 
 .modal__content {

@@ -1,7 +1,3 @@
-.main {
-   
-}
-
 .cards__list {
    display: flex;
    flex-wrap: wrap;
@@ -9,4 +5,14 @@
    padding: 0;
    list-style-type: none;
    gap: 21px;
+}
+
+.cards {
+   font-weight: 700;
+   font-size: 20px;
+   line-height: 1;
+}
+
+.cards__text {
+   margin: 0 0 20px 0;
 }
