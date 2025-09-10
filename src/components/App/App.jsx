@@ -1,21 +1,21 @@
-import { useEffect, useState } from 'react';
-import './App.css';
-import { coordinates, APIkey } from '../../utils/constants';
-import Header from '../Header/Header';
-import Main from '../Main/Main';
-import ModalWithForm from '../ModalWithForms/ModalWithForm';
-import ItemModal from '../ItemModal/ItemModal';
+import { useEffect, useState } from "react";
+import "./App.css";
+import { coordinates, APIkey } from "../../utils/constants";
+import Header from "../Header/Header";
+import Main from "../Main/Main";
+import ModalWithForm from "../ModalWithForms/ModalWithForm";
+import ItemModal from "../ItemModal/ItemModal";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
-import Footer from '../Footer/Footer';
+import Footer from "../Footer/Footer";
 
 function App() {
-  const [weatherData, setWeatherData] = useState({ 
-    type: "", 
+  const [weatherData, setWeatherData] = useState({
+    type: "",
     temp: { F: 999, C: 999 },
-    city: "", 
+    city: "",
   });
   const [activeModal, setActiveModal] = useState("");
-const [selectedCard, setSelectedCard] = useState({});
+  const [selectedCard, setSelectedCard] = useState({});
 
   const handleCardClick = (card) => {
     setActiveModal("preview");
@@ -48,7 +48,8 @@ const [selectedCard, setSelectedCard] = useState({});
       <ModalWithForm
         buttonText="Add garment"
         title="New garment"
-        activeModal={activeModal}
+        name="add-garment"
+        isOpen={activeModal === "add-garment"}
         onClose={closeActiveModal}
       >
         <label htmlFor="name" className="modal__label">

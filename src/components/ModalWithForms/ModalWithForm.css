@@ -15,41 +15,39 @@
    visibility: visible;
 }
 
-.modal__title {
+.modal__title-add {
    margin: 0 0 24px 0;
-   font-size: 16px;
+   font-size: 20px;
    font-weight: 700;
-   line-height: 1.4;
+   line-height: 1.2;
    color: #000;
 }
 
-.modal__close-btn {
+.modal__close {
    position: absolute;
    top: 20px;
-   right: 20px;
+   right: 28px;
    background: none;
    border: none;
-   font-size: 20px;
    cursor: pointer;
    height: 20px;
    width: 20px;
-   color: #c1c1c1;
 }
 
-.modal__close-btn img {
-   width: 16px;
-   height: 16px;
+.modal__close img {
+   width: 20px;
+   height: 20px;
 }
 
-.modal__content {
+.modal__container {
    background-color: #ffffff;
    padding: 28px;
    border-radius: 16px;
    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
    position: relative;
    max-width: 496px;
+   width: 496px;
    box-sizing: border-box;
-   width: 100%;
 }
 
 .modal__form {
@@ -68,12 +66,12 @@
 .modal__input {
    display: block;
    width: 100%;
-   padding: 16px 12px;
+   padding: 8px 0 4px;
    border: none;
    border-bottom: 1px solid #000;
    background: transparent;
    font-size: 16px;
-   margin-bottom: 32px;
+   margin-bottom: 24px;
    box-sizing: border-box;
 }
 
@@ -91,34 +89,50 @@
    padding: 0;
    display: flex;
    flex-direction: column;
-   margin-bottom: 32px;
+   margin: 0 0 32px;
 }
 
-.modal__radio-btn {
+.modal__legend {
+   padding: 0;
+   font-size: 16px;
+   font-weight: 700;
+   color: #000;
+   margin-bottom: 12px;
+   display: block;
+}
+
+.modal__label_type_radio {
    display: flex;
    align-items: center;
    margin-bottom: 8px;
    font-size: 16px;
+   font-weight: 700;
    color: #000;
+   cursor: pointer;
 }
 
-.modal__radio-btn input {
+.modal__radio-input {
    margin-right: 12px;
    width: 16px;
    height: 16px;
+   cursor: pointer;
 }
 
 .modal__submit {
    background-color: #b6b6b6;
+   font-family: "cabinetgrotesk", sans-serif;
    color: white;
    border: none;
-   padding: 16px 24px;
-   border-radius: 8px;
+   padding: 8px 8px;
+   width: 124px;
+   height: 36px;
+   border-radius: 4px;
    font-size: 16px;
    font-weight: 700;
-   line-height: 1.4;
+   line-height: 1.2;
    cursor: pointer;
-   align-self: flex-start;
+   white-space: nowrap;
+   box-sizing: border-box;
 }
 
 .modal__submit:hover {
