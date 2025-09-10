@@ -2,21 +2,31 @@
    position: fixed;
    top: 0;
    left: 0;
-   width: 100%;
-   height: 100%;
-   background-color: rgba(0, 0, 0, 0.5);
+   right: 0;
+   bottom: 0;
+   background-color: rgba(0, 0, 0, 0.3);
    display: flex;
    align-items: center;
    justify-content: center;
-   z-index: 1000;
-   opacity: 0;
    visibility: hidden;
-   transition: opacity 0.3s ease, visibility 0.3s ease;
+   z-index: 1000;
 }
 
 .modal_opened {
-   opacity: 1;
    visibility: visible;
+}
+
+.modal__content {
+   background-color: #ffffff;
+   padding: 0;
+   border-radius: 16px;
+   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+   position: relative;
+   max-width: 498px;
+   box-sizing: border-box;
+   width: 100%;
+   margin: 20px;
+   overflow: hidden;
 }
 
 .modal__close-btn {
@@ -26,12 +36,77 @@
    background: none;
    border: none;
    cursor: pointer;
-   z-index: 10;
-   padding: 8px;
-   border-radius: 50%;
-   transition: background-color 0.2s ease;
+   padding: 0;
+   width: 20px;
+   height: 20px;
+   z-index: 1001;
 }
 
-.modal__label {
-   font-family: "CabinetGrotesk-Regular";
+.modal__close-btn img {
+   width: 100%;
+   height: 100%;
+   opacity: 0.6;
+}
+
+.modal__close-btn:hover img {
+   opacity: 1;
+}
+
+.modal__image {
+   width: 100%;
+   height: 498px;
+   object-fit: cover;
+   display: block;
+   border-radius: 16px 16px 0 0;
+}
+
+.modal__info {
+   padding: 20px 32px 32px 32px;
+   display: flex;
+   flex-direction: column;
+   gap: 4px;
+}
+
+.modal__title {
+   margin: 0;
+   font-size: 20px;
+   font-weight: 700;
+   line-height: 1.2;
+   padding-bottom: 12px;
+}
+
+.modal__weather {
+   margin: 0;
+   font-size: 20px;
+   font-weight: 700;
+   line-height: 1.2;
+   text-transform: capitalize;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+   .modal__content {
+      margin: 16px;
+   }
+
+   .modal__close-btn {
+      top: 12px;
+      right: 12px;
+   }
+
+   .modal__image {
+      height: 300px;
+   }
+
+   .modal__info {
+      padding: 16px 20px 20px 20px;
+   }
+
+   .modal__title {
+      font-size: 18px;
+   }
+
+   .modal__weather {
+      font-size: 14px;
+   }
 }
