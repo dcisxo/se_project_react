@@ -112,7 +112,7 @@ This project was developed as part of the TripleTen Software Engineering program
 
 ## Contact
 
-**Damian Campos** - [Your Email] - [Your LinkedIn]
+**Damian Campos**
 
 Project Link: [https://github.com/dcisxo/se_project_react](https://github.com/dcisxo/se_project_react)
 
