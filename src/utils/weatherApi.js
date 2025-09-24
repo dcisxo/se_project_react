@@ -1,21 +1,17 @@
-export const getWeather = ({ latitude, longitude }, APIkey) => {
+import { checkResponse } from "./api";
+
+const getWeather = ({ latitude, longitude }, APIkey) => {
   return fetch(
     `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${APIkey}`
-  ).then((res) => {
-    if (res.ok) {
-      return res.json();
-    } else {
-      return Promise.reject(`Error: ${res.status}`);
-    }
-  });
+  ).then(checkResponse);
 };
 
-export const filterWeatherData = (data) => {
+const filterWeatherData = (data) => {
   const result = {};
   result.city = data.name;
   result.temp = {
-    F: data.main.temp,
-    C: (data.main.temp - 32) * (5 / 9),
+    F: Math.round(data.main.temp),
+    C: Math.round((data.main.temp - 32) * (5 / 9)),
   };
   result.weatherType = getWeatherType(result.temp.F);
   result.condition = getWeatherCondition(data.weather[0].main.toLowerCase());
@@ -59,3 +55,5 @@ const getWeatherCondition = (condition) => {
       return "clear";
   }
 };
+
+export { getWeather, filterWeatherData };
