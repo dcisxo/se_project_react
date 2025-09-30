@@ -9,7 +9,6 @@ function ToggleSwitch() {
 
   return (
     <div className="switch">
-      <span className="switch__temp-c">°C</span>
       <label className="switch__label">
         <input
           type="checkbox"
@@ -17,9 +16,11 @@ function ToggleSwitch() {
           checked={currentTemperatureUnit === "C"}
           onChange={handleToggleSwitchChange}
         />
-        <span className="switch__slider"></span>
+        <span className="switch__slider">
+          <span className="switch__temp-f">°F</span>
+          <span className="switch__temp-c">°C</span>
+        </span>
       </label>
-      <span className="switch__temp-f">°F</span>
     </div>
   );
 }

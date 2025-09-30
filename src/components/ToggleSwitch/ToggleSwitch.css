@@ -1,0 +1,85 @@
+.switch {
+  display: inline-block;
+}
+
+.switch__label {
+  position: relative;
+  display: inline-block;
+  width: 56px;
+  height: 28px;
+  cursor: pointer;
+}
+
+.switch__checkbox {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.switch__slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #fff;
+  border-radius: 14px;
+  transition: 0.3s;
+}
+
+.switch__slider::before {
+  position: absolute;
+  content: "F";
+  height: 28px;
+  width: 28px;
+  background-color: #000;
+  border-radius: 50%;
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+}
+
+.switch__slider::after {
+  position: absolute;
+  content: "C";
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  font-weight: bold;
+  color: #ccc;
+  transition: 0.3s;
+}
+
+/* Hover effects */
+.switch__label:hover .switch__slider {
+  border-color: #000;
+}
+
+.switch__label:hover .switch__slider::before {
+  transform: translateX(4px);
+}
+
+.switch__checkbox:checked + .switch__slider::before {
+  content: "C";
+  transform: translateX(28px);
+}
+
+.switch__checkbox:checked + .switch__slider::after {
+  content: "F";
+  left: 8px;
+  right: auto;
+}
+
+.switch__checkbox:checked + .switch__slider:hover::before {
+  transform: translateX(24px);
+}
+
+.switch__temp-f,
+.switch__temp-c {
+  display: none;
+}
