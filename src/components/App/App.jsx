@@ -15,7 +15,7 @@ import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperature
 
 function App() {
   const [weatherData, setWeatherData] = useState({
-    type: "",
+    weatherType: "",
     temp: { F: 999, C: 999 },
     city: "",
   });
