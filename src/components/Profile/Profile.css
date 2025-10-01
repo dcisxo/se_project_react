@@ -1,0 +1,31 @@
+.profile {
+  display: flex;
+  margin: 0;
+  padding: 40px 40px 80px;
+  gap: 80px; /* Increase from 40px to 80px for more space */
+  min-height: calc(100vh - 200px);
+  max-width: 1440px;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.profile__sidebar {
+}
+
+.profile__clothing-section {
+  flex: 1;
+  min-width: 0;
+  max-width: 1015px;
+}
+
+@media screen and (max-width: 768px) {
+  .profile {
+    flex-direction: column;
+    padding: 32px 16px 40px;
+    gap: 32px;
+  }
+
+  .profile__sidebar {
+    width: 100%;
+  }
+}

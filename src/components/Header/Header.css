@@ -1,14 +1,26 @@
 .header {
   display: flex;
   align-items: center;
-  padding: 32px 40px 28px;
+  padding: 32px 0 28px;
   font-size: 20px;
   font-weight: 700;
   line-height: 1.2;
+  width: 100%;
+}
+
+.header__logo-link {
+  margin-right: 24px;
+  text-decoration: none;
+  display: block;
+  transition: opacity 0.3s ease;
+}
+
+.header__logo-link:hover {
+  opacity: 0.6;
 }
 
 .header__logo {
-  margin-right: 24px;
+  display: block;
 }
 
 .header__date-location {
@@ -29,11 +41,22 @@
   font-weight: 700;
   font-size: 20px;
   line-height: 1.2;
+  cursor: pointer;
+  transition: color 0.3s ease;
 }
 
 .header__add-clothes-btn:hover {
   color: #007bff;
-  cursor: pointer;
+}
+
+.header__user-link {
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 0.3s ease;
+}
+
+.header__user-link:hover {
+  opacity: 0.6;
 }
 
 .header__user-info {
@@ -44,6 +67,7 @@
 
 .header__username {
   margin: 0;
+  color: rgba(0, 0, 0, 1);
 }
 
 .header__avatar {
@@ -62,6 +86,10 @@
     gap: 15px;
   }
 
+  .header__logo-link {
+    margin-right: 16px;
+  }
+
   .header__date-location {
     order: 3;
     width: 100%;
@@ -75,5 +103,9 @@
 
   .header__username {
     display: none;
+  }
+
+  .header__add-clothes-btn {
+    margin: 0 16px 0 16px;
   }
 }

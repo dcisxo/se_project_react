@@ -1,19 +1,22 @@
 .card {
   position: relative;
   cursor: pointer;
+  width: 100%;
 }
 
 .card__image {
-  width: 328px;
-  height: 328px;
+  width: 100%;
+  aspect-ratio: 1;
   border-radius: 10px;
   object-fit: cover;
+  display: block;
 }
 
 .card__title {
   position: absolute;
-  bottom: 287px;
-  right: 125px;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
   margin: 0;
   color: rgba(0, 0, 0, 0.6);
   font-size: 16px;
@@ -26,19 +29,7 @@
 }
 
 /* Responsive design */
-@media (max-width: 1100px) {
-  .card__image {
-    width: 300px;
-    height: 300px;
-  }
-}
-
 @media (max-width: 768px) {
-  .card__image {
-    width: 136px;
-    height: 136px;
-  }
-
   .card__title {
     font-size: 12px;
     padding: 6px 12px;
