@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { Routes, Route, HashRouter } from "react-router-dom";
 import "./App.css";
 import { coordinates, apiKey } from "../../utils/constants";
 import Header from "../Header/Header";
@@ -108,7 +108,7 @@ function App() {
       <CurrentTemperatureUnitContext.Provider
         value={{ currentTemperatureUnit, handleToggleSwitchChange }}
       >
-        <BrowserRouter>
+        <HashRouter>
           <div className="page__content">
             <Header handleAddClick={handleAddClick} weatherData={weatherData} />
             <Routes>
@@ -154,7 +154,7 @@ function App() {
             onConfirm={handleCardDelete}
             item={cardToDelete}
           />
-        </BrowserRouter>
+        </HashRouter>
       </CurrentTemperatureUnitContext.Provider>
     </div>
   );
