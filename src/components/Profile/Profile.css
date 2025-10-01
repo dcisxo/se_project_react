@@ -9,9 +9,6 @@
   justify-content: space-between;
 }
 
-.profile__sidebar {
-}
-
 .profile__clothing-section {
   flex: 1;
   min-width: 0;

@@ -1,0 +1,69 @@
+.modal__container_type_delete {
+  max-width: 440px;
+  width: 440px;
+}
+
+.modal__content_type_delete {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.modal__text {
+  margin: 0 0 24px 0;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.2;
+  color: #000;
+}
+
+.modal__buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.modal__confirm-btn {
+  background-color: #d62d20;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  height: 36px;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.modal__confirm-btn:hover {
+  background-color: #b8251a;
+}
+
+.modal__cancel-btn {
+  background: none;
+  color: #b6b6b6;
+  border: none;
+  padding: 8px 16px;
+  height: 36px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.modal__cancel-btn:hover {
+  color: #999;
+}
+
+@media (max-width: 768px) {
+  .modal__container_type_delete {
+    max-width: 360px;
+    width: 360px;
+    margin: 16px;
+  }
+}

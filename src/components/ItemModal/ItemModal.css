@@ -83,6 +83,24 @@
   text-transform: capitalize;
 }
 
+.modal__delete-btn {
+  background: none;
+  border: none;
+  color: #b6b6b6;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.2;
+  cursor: pointer;
+  padding: 0;
+  margin-top: 12px;
+  text-align: left;
+  transition: color 0.3s ease;
+}
+
+.modal__delete-btn:hover {
+  color: #ff4d4d;
+}
+
 /* Responsive design */
 @media (max-width: 768px) {
   .modal__content {
