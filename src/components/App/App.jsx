@@ -1,17 +1,28 @@
+// React and third-party libraries
 import { useEffect, useState } from "react";
 import { Routes, Route, HashRouter } from "react-router-dom";
+
+// Styles
 import "./App.css";
+
+// Utils and constants
 import { coordinates, apiKey } from "../../utils/constants";
+import { getWeather, filterWeatherData } from "../../utils/weatherApi";
+import { getItems, addItem, deleteItem } from "../../utils/api";
+
+// Contexts
+import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
+
+// Components
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Profile from "../Profile/Profile";
+import Footer from "../Footer/Footer";
+
+// Modal components
 import AddItemModal from "../AddItemModal/AddItemModal";
 import ItemModal from "../ItemModal/ItemModal";
 import DeleteConfirmationModal from "../DeleteConfirmationModal/DeleteConfirmationModal";
-import { getWeather, filterWeatherData } from "../../utils/weatherApi";
-import { getItems, addItem, deleteItem } from "../../utils/api";
-import Footer from "../Footer/Footer";
-import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -53,7 +64,7 @@ function App() {
         setClothingItems(updatedItems);
 
         // Close modals and reset state
-        setActiveModal("");
+        closeActiveModal();
         setCardToDelete(null);
       })
       .catch((error) => {

@@ -11,7 +11,7 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
 
   useEffect(() => {
     if (isOpen) reset({ name: "", imageUrl: "", weather: "" });
-  }, [isOpen, reset]);
+  }, [isOpen]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

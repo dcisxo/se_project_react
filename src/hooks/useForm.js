@@ -8,7 +8,7 @@ export function useForm(inputValues) {
     setValues({ ...values, [name]: value });
   };
 
-  const reset = (newValues = {}) => {
+  const reset = (newValues = inputValues) => {
     setValues(newValues);
   };
 
