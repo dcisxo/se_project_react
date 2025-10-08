@@ -6,7 +6,7 @@ import { Routes, Route, HashRouter } from "react-router-dom";
 import "./App.css";
 
 // Utils and constants
-import { coordinates, apiKey } from "../../utils/constants";
+import { apiKey } from "../../utils/constants";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { getItems, addItem, deleteItem } from "../../utils/api";
 
@@ -57,13 +57,10 @@ function App() {
   const handleCardDelete = (cardToDelete) => {
     deleteItem(cardToDelete._id)
       .then(() => {
-        // Update state by filtering out the deleted item
         const updatedItems = clothingItems.filter(
           (item) => item._id !== cardToDelete._id
         );
         setClothingItems(updatedItems);
-
-        // Close modals and reset state
         closeActiveModal();
         setCardToDelete(null);
       })
@@ -75,10 +72,7 @@ function App() {
   const handleAddItemSubmit = (item, resetForm) => {
     addItem(item)
       .then((newItem) => {
-        // Add the new item to the beginning of the list
         setClothingItems([newItem, ...clothingItems]);
-
-        // Close the modal and reset the form
         closeActiveModal();
         resetForm();
       })
@@ -91,16 +85,33 @@ function App() {
     setCurrentTemperatureUnit(currentTemperatureUnit === "F" ? "C" : "F");
   };
 
-  // Fetch weather data
+  // Fetch weather data using geolocation
   useEffect(() => {
-    getWeather(coordinates, apiKey)
-      .then((data) => {
-        const filteredData = filterWeatherData(data);
-        setWeatherData(filteredData);
-      })
-      .catch((error) => {
-        console.error("Error fetching weather data:", error);
-      });
+    if (!navigator.geolocation) {
+      console.error("Geolocation is not supported by this browser.");
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const coords = {
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+        };
+        getWeather(coords, apiKey)
+          .then((data) => {
+            const filteredData = filterWeatherData(data);
+            setWeatherData(filteredData);
+          })
+          .catch((error) => {
+            console.error("Error fetching weather data:", error);
+          });
+      },
+      (error) => {
+        console.error("Error getting geolocation:", error);
+        // Optionally add fallback coordinates here if needed
+      }
+    );
   }, []);
 
   // Fetch clothing items from server
