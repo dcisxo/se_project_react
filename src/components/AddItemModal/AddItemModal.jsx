@@ -11,6 +11,7 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
 
   useEffect(() => {
     if (isOpen) reset({ name: "", imageUrl: "", weather: "" });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen]);
 
   const handleSubmit = (e) => {
