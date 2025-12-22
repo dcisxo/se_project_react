@@ -1,20 +1,20 @@
+import "./Profile.css";
 import SideBar from "../SideBar/SideBar";
 import ClothesSection from "../ClothesSection/ClothesSection";
-import "./Profile.css";
 
-function Profile({ clothingItems, onCardClick, onAddClick }) {
+function Profile({ clothingItems, onCardClick, onAddClick, onEditProfile }) {
   return (
     <div className="profile">
-      <div className="profile__sidebar">
-        <SideBar />
-      </div>
-      <div className="profile__clothing-section">
+      <section className="profile__sidebar">
+        <SideBar onEditProfile={onEditProfile} />
+      </section>
+      <section className="profile__clothing-items">
         <ClothesSection
           clothingItems={clothingItems}
           onCardClick={onCardClick}
           onAddClick={onAddClick}
         />
-      </div>
+      </section>
     </div>
   );
 }

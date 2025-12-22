@@ -1,21 +1,29 @@
+import { useContext } from "react";
 import "./SideBar.css";
-import avatarSvg from "../../assets/avatar.svg";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-function SideBar() {
-  // Hardcoded user data for now
-  const currentUser = {
-    name: "Terrence Tegegne",
-    avatar: avatarSvg,
-  };
+function SideBar({ onEditProfile }) {
+  const currentUser = useContext(CurrentUserContext);
 
   return (
     <div className="sidebar">
-      <img
-        src={currentUser.avatar}
-        alt={currentUser.name}
-        className="sidebar__avatar"
-      />
-      <p className="sidebar__username">{currentUser.name}</p>
+      <div className="sidebar__user-info">
+        {currentUser?.avatar ? (
+          <img
+            src={currentUser.avatar}
+            alt={currentUser.name}
+            className="sidebar__avatar"
+          />
+        ) : (
+          <div className="sidebar__avatar sidebar__avatar_placeholder">
+            {currentUser?.name?.charAt(0).toUpperCase()}
+          </div>
+        )}
+        <p className="sidebar__username">{currentUser?.name}</p>
+      </div>
+      <button onClick={onEditProfile} className="sidebar__edit-button">
+        Change profile data
+      </button>
     </div>
   );
 }
