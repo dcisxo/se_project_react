@@ -28,6 +28,32 @@
   white-space: nowrap;
 }
 
+.card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.card__like-button {
+  background: url("../../assets/like-button.svg") no-repeat center;
+  background-size: contain;
+  width: 20px;
+  height: 18px;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.card__like-button:hover {
+  opacity: 0.6;
+}
+
+.card__like-button_active {
+  background: url("../../assets/like-button-active.svg") no-repeat center;
+  background-size: contain;
+}
+
 /* Responsive design */
 @media (max-width: 768px) {
   .card__title {

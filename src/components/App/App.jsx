@@ -10,6 +10,7 @@ import { apiKey } from "../../utils/constants";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { getItems, addItem, deleteItem, updateUser } from "../../utils/api";
 import * as auth from "../../utils/auth";
+import { addCardLike, removeCardLike } from "../../utils/api";
 
 // Contexts
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
@@ -129,6 +130,7 @@ function App() {
     setCurrentUser(null);
   };
 
+  // Delete item handler
   const handleCardDelete = (cardToDelete) => {
     const token = localStorage.getItem("jwt");
     deleteItem(cardToDelete._id, token)
@@ -145,6 +147,30 @@ function App() {
       });
   };
 
+  // Card like/unlike handler
+  const handleCardLike = ({ id, isLiked }) => {
+    const token = localStorage.getItem("jwt");
+    // Check if this card is not currently liked
+    !isLiked
+      ? // if so, send a request to add the user's id to the card's likes array
+        addCardLike(id, token)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((item) => (item._id === id ? updatedCard : item))
+            );
+          })
+          .catch((err) => console.log(err))
+      : // if not, send a request to remove the user's id from the card's likes array
+        removeCardLike(id, token)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((item) => (item._id === id ? updatedCard : item))
+            );
+          })
+          .catch((err) => console.log(err));
+  };
+
+  // Add new item handler
   const handleAddItemSubmit = (item, resetForm) => {
     const token = localStorage.getItem("jwt");
     addItem(item, token)
@@ -158,6 +184,7 @@ function App() {
       });
   };
 
+  // Temperature unit toggle handler
   const handleToggleSwitchChange = () => {
     setCurrentTemperatureUnit(currentTemperatureUnit === "F" ? "C" : "F");
   };
@@ -244,6 +271,7 @@ function App() {
                       weatherData={weatherData}
                       handleCardClick={handleCardClick}
                       clothingItems={clothingItems}
+                      onCardLike={handleCardLike}
                     />
                   }
                 />
@@ -256,6 +284,7 @@ function App() {
                         onCardClick={handleCardClick}
                         onAddClick={handleAddClick}
                         onEditProfile={handleEditProfileClick}
+                        onCardLike={handleCardLike}
                       />
                     </ProtectedRoute>
                   }
@@ -289,6 +318,7 @@ function App() {
                 card={selectedCard}
                 onClose={closeActiveModal}
                 onDeleteClick={openConfirmationModal}
+                onCardLike={handleCardLike}
               />
             )}
             <DeleteConfirmationModal
