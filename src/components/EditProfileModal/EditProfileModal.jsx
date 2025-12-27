@@ -35,12 +35,12 @@ const EditProfileModal = ({ isOpen, onCloseModal, onUpdateUser }) => {
       onClose={onCloseModal}
       onSubmit={handleSubmit}
     >
-      <label htmlFor="edit-name" className="modal__label">
+      <label htmlFor="edit-profile-name" className="modal__label">
         Name{" "}
         <input
           type="text"
           className="modal__input"
-          id="edit-name"
+          id="edit-profile-name"
           name="name"
           placeholder="Name"
           value={values.name}
@@ -48,12 +48,12 @@ const EditProfileModal = ({ isOpen, onCloseModal, onUpdateUser }) => {
           required
         />
       </label>
-      <label htmlFor="edit-avatar" className="modal__label">
+      <label htmlFor="edit-profile-avatar" className="modal__label">
         Avatar URL{" "}
         <input
           type="url"
           className="modal__input"
-          id="edit-avatar"
+          id="edit-profile-avatar"
           name="avatar"
           placeholder="Avatar URL"
           value={values.avatar}

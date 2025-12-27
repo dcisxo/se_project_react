@@ -261,7 +261,6 @@ function App() {
                 isLoggedIn={isLoggedIn}
                 onRegisterClick={() => setActiveModal("register")}
                 onLoginClick={() => setActiveModal("login")}
-                onLogout={handleLogout}
               />
               <Routes>
                 <Route

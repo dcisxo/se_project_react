@@ -11,7 +11,6 @@ function Header({
   isLoggedIn,
   onRegisterClick,
   onLoginClick,
-  onLogout,
 }) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
