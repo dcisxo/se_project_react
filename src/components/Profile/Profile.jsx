@@ -8,11 +8,12 @@ function Profile({
   onAddClick,
   onEditProfile,
   onCardLike,
+  onLogout,
 }) {
   return (
     <div className="profile">
       <section className="profile__sidebar">
-        <SideBar onEditProfile={onEditProfile} />
+        <SideBar onEditProfile={onEditProfile} onLogout={onLogout} />
       </section>
       <section className="profile__clothing-items">
         <ClothesSection

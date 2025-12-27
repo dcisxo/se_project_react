@@ -285,6 +285,7 @@ function App() {
                         onAddClick={handleAddClick}
                         onEditProfile={handleEditProfileClick}
                         onCardLike={handleCardLike}
+                        onLogout={handleLogout}
                       />
                     </ProtectedRoute>
                   }
