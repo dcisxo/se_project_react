@@ -1,6 +1,6 @@
 // React and third-party libraries
 import { useEffect, useState } from "react";
-import { Routes, Route, HashRouter } from "react-router-dom";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 
 // Styles
 import "./App.css";
@@ -253,7 +253,7 @@ function App() {
         <CurrentTemperatureUnitContext.Provider
           value={{ currentTemperatureUnit, handleToggleSwitchChange }}
         >
-          <HashRouter>
+          <BrowserRouter>
             <div className="page__content">
               <Header
                 handleAddClick={handleAddClick}
@@ -327,7 +327,7 @@ function App() {
               onConfirm={handleCardDelete}
               item={cardToDelete}
             />
-          </HashRouter>
+          </BrowserRouter>
         </CurrentTemperatureUnitContext.Provider>
       </div>
     </CurrentUserContext.Provider>
