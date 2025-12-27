@@ -1,8 +1,8 @@
 import { useForm } from "../../hooks/useForm";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-const RegisterModal = ({ isOpen, onCloseModal, onRegister }) => {
+const RegisterModal = ({ isOpen, onCloseModal, onRegister, errorMessage }) => {
   const { values, handleChange, reset } = useForm({
     name: "",
     avatar: "",
@@ -10,10 +10,21 @@ const RegisterModal = ({ isOpen, onCloseModal, onRegister }) => {
     password: "",
   });
 
+  const [isValid, setIsValid] = useState(false);
+
   useEffect(() => {
     if (isOpen) reset({ name: "", avatar: "", email: "", password: "" });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen]);
+
+  useEffect(() => {
+    const isNameValid = values.name.trim().length >= 2;
+    const isAvatarValid = values.avatar.startsWith("http");
+    const isEmailValid =
+      values.email.includes("@") && values.email.includes(".");
+    const isPasswordValid = values.password.length >= 8;
+    setIsValid(isNameValid && isAvatarValid && isEmailValid && isPasswordValid);
+  }, [values]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -28,6 +39,8 @@ const RegisterModal = ({ isOpen, onCloseModal, onRegister }) => {
       isOpen={isOpen}
       onClose={onCloseModal}
       onSubmit={handleSubmit}
+      isValid={isValid}
+      errorMessage={errorMessage}
     >
       <label htmlFor="register-name" className="modal__label">
         Name{" "}

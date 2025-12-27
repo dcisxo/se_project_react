@@ -1,17 +1,26 @@
 import { useForm } from "../../hooks/useForm";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-const LoginModal = ({ isOpen, onCloseModal, onLogin }) => {
+const LoginModal = ({ isOpen, onCloseModal, onLogin, errorMessage }) => {
   const { values, handleChange, reset } = useForm({
     email: "",
     password: "",
   });
 
+  const [isValid, setIsValid] = useState(false);
+
   useEffect(() => {
     if (isOpen) reset({ email: "", password: "" });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen]);
+
+  useEffect(() => {
+    const isEmailValid =
+      values.email.includes("@") && values.email.includes(".");
+    const isPasswordValid = values.password.length >= 8;
+    setIsValid(isEmailValid && isPasswordValid);
+  }, [values]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -26,6 +35,8 @@ const LoginModal = ({ isOpen, onCloseModal, onLogin }) => {
       isOpen={isOpen}
       onClose={onCloseModal}
       onSubmit={handleSubmit}
+      isValid={isValid}
+      errorMessage={errorMessage}
     >
       <label htmlFor="login-email" className="modal__label">
         Email{" "}

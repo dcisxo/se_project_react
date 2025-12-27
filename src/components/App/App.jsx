@@ -42,6 +42,7 @@ function App() {
   const [clothingItems, setClothingItems] = useState([]);
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [cardToDelete, setCardToDelete] = useState(null);
+  const [authError, setAuthError] = useState("");
 
   // Authentication state
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -62,6 +63,7 @@ function App() {
 
   const closeActiveModal = () => {
     setActiveModal("");
+    setAuthError("");
   };
 
   const openConfirmationModal = (card) => {
@@ -71,10 +73,10 @@ function App() {
 
   // Registration handler
   const handleRegister = (values, reset) => {
+    setAuthError(""); // Clear previous errors
     auth
       .signup(values)
       .then(() => {
-        // After successful registration, automatically log in
         return auth.signin({ email: values.email, password: values.password });
       })
       .then((data) => {
@@ -88,24 +90,31 @@ function App() {
       })
       .catch((error) => {
         console.error("Error during registration:", error);
+        setAuthError("Registration failed. Please try again.");
       });
   };
 
   // Login handler
   const handleLogin = (values, reset) => {
+    setAuthError(""); // Clear previous errors
     auth
       .signin(values)
       .then((data) => {
         if (data.token) {
           localStorage.setItem("jwt", data.token);
-          setCurrentUser(data.user);
-          setIsLoggedIn(true);
-          closeActiveModal();
-          reset();
+          // Fetch user data after login
+          return auth.validateToken(data.token);
         }
+      })
+      .then((user) => {
+        setCurrentUser(user);
+        setIsLoggedIn(true);
+        closeActiveModal();
+        reset();
       })
       .catch((error) => {
         console.error("Error during login:", error);
+        setAuthError("Invalid email or password. Please try again.");
       });
   };
 
@@ -301,11 +310,13 @@ function App() {
               isOpen={activeModal === "register"}
               onCloseModal={closeActiveModal}
               onRegister={handleRegister}
+              errorMessage={authError}
             />
             <LoginModal
               isOpen={activeModal === "login"}
               onCloseModal={closeActiveModal}
               onLogin={handleLogin}
+              errorMessage={authError}
             />
             <EditProfileModal
               isOpen={activeModal === "edit-profile"}
