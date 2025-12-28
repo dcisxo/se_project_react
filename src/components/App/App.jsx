@@ -167,6 +167,10 @@ function App() {
             setClothingItems((cards) =>
               cards.map((item) => (item._id === id ? updatedCard : item))
             );
+            // Update selectedCard if it's the same card
+            setSelectedCard((prevCard) =>
+              prevCard._id === id ? updatedCard : prevCard
+            );
           })
           .catch((err) => console.log(err))
       : // if not, send a request to remove the user's id from the card's likes array
@@ -174,6 +178,10 @@ function App() {
           .then((updatedCard) => {
             setClothingItems((cards) =>
               cards.map((item) => (item._id === id ? updatedCard : item))
+            );
+            // Update selectedCard if it's the same card
+            setSelectedCard((prevCard) =>
+              prevCard._id === id ? updatedCard : prevCard
             );
           })
           .catch((err) => console.log(err));
