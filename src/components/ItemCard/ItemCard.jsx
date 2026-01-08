@@ -23,6 +23,12 @@ function ItemCard({ item, onCardClick, onCardLike }) {
 
   return (
     <li className="card">
+      <img
+        onClick={handleCardClick}
+        className="card__image"
+        src={item.imageUrl}
+        alt={item.name}
+      />
       <div className="card__header">
         <h2 className="card__name">{item.name}</h2>
         {currentUser && (
@@ -33,12 +39,6 @@ function ItemCard({ item, onCardClick, onCardLike }) {
           />
         )}
       </div>
-      <img
-        onClick={handleCardClick}
-        className="card__image"
-        src={item.imageUrl}
-        alt={item.name}
-      />
     </li>
   );
 }
