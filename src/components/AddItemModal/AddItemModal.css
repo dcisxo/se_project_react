@@ -1,0 +1,16 @@
+.modal__radio-input:not(:checked) {
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.modal__label.modal__label_type_radio {
+  opacity: 0.5;
+}
+
+.modal__label.modal__label_type_radio:has(.modal__radio-input:checked) {
+  opacity: 1;
+}
+
+.modal__radio-input:checked {
+  opacity: 1;
+}

@@ -2,7 +2,7 @@
   display: flex;
   margin: 0;
   padding: 40px 40px 80px;
-  gap: 80px; /* Increase from 40px to 80px for more space */
+  gap: 80px;
   min-height: calc(100vh - 200px);
   max-width: 1440px;
   width: 100%;

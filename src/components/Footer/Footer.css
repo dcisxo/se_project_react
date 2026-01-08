@@ -1,9 +1,10 @@
 .footer {
-  margin: 0;
+  max-width: 1440px;
+  margin: 0 auto 24px auto;
+  width: 100%;
   display: flex;
   justify-content: space-between;
-  margin-top: auto; /* This pushes the footer to the bottom */
-  padding: 24px 40px; /* Add some padding for better spacing */
+  margin-top: 4.25%;
 }
 
 .footer__text {
