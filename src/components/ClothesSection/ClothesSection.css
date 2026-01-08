@@ -23,7 +23,7 @@
   padding-right: 20px;
 }
 
-.clothes-section__add-btn {
+.clothes-section__add-button {
   background: none;
   border: none;
   font-family: "Cabinet Grotesk", "Arial", sans-serif;
@@ -36,7 +36,7 @@
   transition: opacity 0.3s ease;
 }
 
-.clothes-section__add-btn:hover {
+.clothes-section__add-button:hover {
   opacity: 0.6;
 }
 
@@ -75,7 +75,7 @@
   }
 
   .clothes-section__title,
-  .clothes-section__add-btn {
+  .clothes-section__add-button {
     font-size: 18px;
   }
 
