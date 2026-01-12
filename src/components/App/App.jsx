@@ -1,6 +1,6 @@
 // React and third-party libraries
 import { useEffect, useState } from "react";
-import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 // Styles
 import "./App.css";
@@ -11,7 +11,6 @@ import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { getItems, addItem, deleteItem, updateUser } from "../../utils/api";
 import * as auth from "../../utils/auth";
 import { addCardLike, removeCardLike } from "../../utils/api";
-import { useNavigate } from "react-router-dom";
 
 // Contexts
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
@@ -95,8 +94,6 @@ function App() {
       });
   };
 
-  const navigate = useNavigate();
-
   // Login handler
   const handleLogin = (values, reset) => {
     setAuthError(""); // Clear previous errors
@@ -112,7 +109,6 @@ function App() {
       .then((user) => {
         setCurrentUser(user);
         setIsLoggedIn(true);
-        navigate("/");
         closeActiveModal();
         reset();
       })
@@ -279,83 +275,81 @@ function App() {
         <CurrentTemperatureUnitContext.Provider
           value={{ currentTemperatureUnit, handleToggleSwitchChange }}
         >
-          <BrowserRouter>
-            <div className="page__content">
-              <Header
-                handleAddClick={handleAddClick}
-                weatherData={weatherData}
-                isLoggedIn={isLoggedIn}
-                onRegisterClick={() => setActiveModal("register")}
-                onLoginClick={() => setActiveModal("login")}
+          <div className="page__content">
+            <Header
+              handleAddClick={handleAddClick}
+              weatherData={weatherData}
+              isLoggedIn={isLoggedIn}
+              onRegisterClick={() => setActiveModal("register")}
+              onLoginClick={() => setActiveModal("login")}
+            />
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <Main
+                    weatherData={weatherData}
+                    handleCardClick={handleCardClick}
+                    clothingItems={clothingItems}
+                    onCardLike={handleCardLike}
+                  />
+                }
               />
-              <Routes>
-                <Route
-                  path="/"
-                  element={
-                    <Main
-                      weatherData={weatherData}
-                      handleCardClick={handleCardClick}
+              <Route
+                path="/profile"
+                element={
+                  <ProtectedRoute isLoggedIn={isLoggedIn}>
+                    <Profile
                       clothingItems={clothingItems}
+                      onCardClick={handleCardClick}
+                      onAddClick={handleAddClick}
+                      onEditProfile={handleEditProfileClick}
                       onCardLike={handleCardLike}
+                      onLogout={handleLogout}
                     />
-                  }
-                />
-                <Route
-                  path="/profile"
-                  element={
-                    <ProtectedRoute isLoggedIn={isLoggedIn}>
-                      <Profile
-                        clothingItems={clothingItems}
-                        onCardClick={handleCardClick}
-                        onAddClick={handleAddClick}
-                        onEditProfile={handleEditProfileClick}
-                        onCardLike={handleCardLike}
-                        onLogout={handleLogout}
-                      />
-                    </ProtectedRoute>
-                  }
-                />
-              </Routes>
-            </div>
-            <Footer />
-            <AddItemModal
-              isOpen={activeModal === "add-garment"}
-              onAddItem={handleAddItemSubmit}
-              onCloseModal={closeActiveModal}
-            />
-            <RegisterModal
-              isOpen={activeModal === "register"}
-              onCloseModal={closeActiveModal}
-              onRegister={handleRegister}
-              errorMessage={authError}
-            />
-            <LoginModal
-              isOpen={activeModal === "login"}
-              onCloseModal={closeActiveModal}
-              onLogin={handleLogin}
-              errorMessage={authError}
-            />
-            <EditProfileModal
-              isOpen={activeModal === "edit-profile"}
-              onCloseModal={closeActiveModal}
-              onUpdateUser={handleUpdateUser}
-            />
-            {activeModal === "preview" && (
-              <ItemModal
-                activeModal={activeModal}
-                card={selectedCard}
-                onClose={closeActiveModal}
-                onDeleteClick={openConfirmationModal}
-                onCardLike={handleCardLike}
+                  </ProtectedRoute>
+                }
               />
-            )}
-            <DeleteConfirmationModal
-              isOpen={activeModal === "delete-confirmation"}
+            </Routes>
+          </div>
+          <Footer />
+          <AddItemModal
+            isOpen={activeModal === "add-garment"}
+            onAddItem={handleAddItemSubmit}
+            onCloseModal={closeActiveModal}
+          />
+          <RegisterModal
+            isOpen={activeModal === "register"}
+            onCloseModal={closeActiveModal}
+            onRegister={handleRegister}
+            errorMessage={authError}
+          />
+          <LoginModal
+            isOpen={activeModal === "login"}
+            onCloseModal={closeActiveModal}
+            onLogin={handleLogin}
+            errorMessage={authError}
+          />
+          <EditProfileModal
+            isOpen={activeModal === "edit-profile"}
+            onCloseModal={closeActiveModal}
+            onUpdateUser={handleUpdateUser}
+          />
+          {activeModal === "preview" && (
+            <ItemModal
+              activeModal={activeModal}
+              card={selectedCard}
               onClose={closeActiveModal}
-              onConfirm={handleCardDelete}
-              item={cardToDelete}
+              onDeleteClick={openConfirmationModal}
+              onCardLike={handleCardLike}
             />
-          </BrowserRouter>
+          )}
+          <DeleteConfirmationModal
+            isOpen={activeModal === "delete-confirmation"}
+            onClose={closeActiveModal}
+            onConfirm={handleCardDelete}
+            item={cardToDelete}
+          />
         </CurrentTemperatureUnitContext.Provider>
       </div>
     </CurrentUserContext.Provider>
