@@ -15,7 +15,7 @@ function Profile({
       <section className="profile__sidebar">
         <SideBar onEditProfile={onEditProfile} onLogout={onLogout} />
       </section>
-      <section className="profile__clothing-items">
+      <section className="profile__clothing-section">
         <ClothesSection
           clothingItems={clothingItems}
           onCardClick={onCardClick}

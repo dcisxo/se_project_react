@@ -11,6 +11,7 @@ import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { getItems, addItem, deleteItem, updateUser } from "../../utils/api";
 import * as auth from "../../utils/auth";
 import { addCardLike, removeCardLike } from "../../utils/api";
+import { useNavigate } from "react-router-dom";
 
 // Contexts
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
@@ -94,6 +95,8 @@ function App() {
       });
   };
 
+  const navigate = useNavigate();
+
   // Login handler
   const handleLogin = (values, reset) => {
     setAuthError(""); // Clear previous errors
@@ -109,6 +112,7 @@ function App() {
       .then((user) => {
         setCurrentUser(user);
         setIsLoggedIn(true);
+        navigate("/");
         closeActiveModal();
         reset();
       })
@@ -228,7 +232,12 @@ function App() {
   // Fetch weather data using geolocation
   useEffect(() => {
     if (!navigator.geolocation) {
-      console.error("Geolocation is not supported by this browser.");
+      console.error("Geolocation not supported, using default location.");
+      getWeather(fallback__coordinates)
+        .then((data) => {
+          setWeatherData(data);
+        })
+        .catch(console.error);
       return;
     }
 

@@ -116,6 +116,8 @@ This project was developed as part of the TripleTen Software Engineering program
 
 Project Link: [https://github.com/dcisxo/se_project_react](https://github.com/dcisxo/se_project_react)
 
+Backend Project Link: [https://github.com/dcisxo/se_project_express](https://github.com/dcisxo/se_project_express)
+
 ---
 
 _Developed with ❤️ as part of the TripleTen Software Engineering Bootcamp_

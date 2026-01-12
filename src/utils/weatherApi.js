@@ -56,4 +56,9 @@ const getWeatherCondition = (condition) => {
   }
 };
 
+export const fallback__coordinates = {
+  latitude: 40.7128, // New York City coordinates
+  longitude: -74.006,
+};
+
 export { getWeather, filterWeatherData };
