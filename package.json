@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "homepage": "https://globalwear.h-o-s-t.name",
+  "deploy": "npm run build && scp -r ./dist/* dcamp090799@globalwear.h-o-s-t.name:/home/dcamp090799/frontend",
   "scripts": {
     "dev": "vite --open",
     "build": "vite build",
