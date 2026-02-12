@@ -2,7 +2,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: flex-start;
   justify-content: space-between;
 }
 
@@ -43,17 +43,18 @@
 .clothes-section__list {
   list-style: none;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(325px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(325px, 1fr));
   gap: 20px;
   margin: 0;
   padding: 0;
   width: 100%;
-  max-width: 1015px;
+  max-width: none;
+  justify-items: start;
 }
 
 @media screen and (max-width: 1200px) {
-  .clothes-section__items {
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  .clothes-section__list {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 18px;
   }
 }
@@ -68,8 +69,8 @@
     font-size: 18px;
   }
 
-  .clothes-section__items {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  .clothes-section__list {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 12px;
   }
 }
