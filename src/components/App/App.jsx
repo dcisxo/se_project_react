@@ -137,6 +137,7 @@ function App() {
     localStorage.removeItem("jwt");
     setIsLoggedIn(false);
     setCurrentUser(null);
+    setClothingItems([]);
   };
 
   // Delete item handler
@@ -145,7 +146,7 @@ function App() {
     deleteItem(cardToDelete._id, token)
       .then(() => {
         const updatedItems = clothingItems.filter(
-          (item) => item._id !== cardToDelete._id
+          (item) => item._id !== cardToDelete._id,
         );
         setClothingItems(updatedItems);
         closeActiveModal();
@@ -165,11 +166,11 @@ function App() {
         addCardLike(id, token)
           .then((updatedCard) => {
             setClothingItems((cards) =>
-              cards.map((item) => (item._id === id ? updatedCard : item))
+              cards.map((item) => (item._id === id ? updatedCard : item)),
             );
             // Update selectedCard if it's the same card
             setSelectedCard((prevCard) =>
-              prevCard._id === id ? updatedCard : prevCard
+              prevCard._id === id ? updatedCard : prevCard,
             );
           })
           .catch((err) => console.log(err))
@@ -177,11 +178,11 @@ function App() {
         removeCardLike(id, token)
           .then((updatedCard) => {
             setClothingItems((cards) =>
-              cards.map((item) => (item._id === id ? updatedCard : item))
+              cards.map((item) => (item._id === id ? updatedCard : item)),
             );
             // Update selectedCard if it's the same card
             setSelectedCard((prevCard) =>
-              prevCard._id === id ? updatedCard : prevCard
+              prevCard._id === id ? updatedCard : prevCard,
             );
           })
           .catch((err) => console.log(err));
@@ -254,20 +255,23 @@ function App() {
       },
       (error) => {
         console.error("Error getting geolocation:", error);
-      }
+      },
     );
   }, []);
 
   // Fetch clothing items from server (no auth required)
   useEffect(() => {
-    getItems()
+    if (!currentUser) return;
+
+    const token = localStorage.getItem("jwt");
+    getItems(token)
       .then((items) => {
         setClothingItems(items);
       })
       .catch((error) => {
         console.error("Error fetching items:", error);
       });
-  }, []);
+  }, [currentUser]);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
