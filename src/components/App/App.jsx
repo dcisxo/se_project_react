@@ -228,11 +228,14 @@ function App() {
 
   // Fetch weather data using geolocation
   useEffect(() => {
+    const defaultCoords = { latitude: 40.7128, longitude: -74.006 }; // New York
+
     if (!navigator.geolocation) {
       console.error("Geolocation not supported, using default location.");
-      getWeather(fallback__coordinates)
+      getWeather(defaultCoords, apiKey)
         .then((data) => {
-          setWeatherData(data);
+          const filteredData = filterWeatherData(data);
+          setWeatherData(filteredData);
         })
         .catch(console.error);
       return;
@@ -254,7 +257,16 @@ function App() {
           });
       },
       (error) => {
-        console.error("Error getting geolocation:", error);
+        console.error(
+          "Error getting geolocation, using default location:",
+          error,
+        );
+        getWeather(defaultCoords, apiKey)
+          .then((data) => {
+            const filteredData = filterWeatherData(data);
+            setWeatherData(filteredData);
+          })
+          .catch(console.error);
       },
     );
   }, []);
